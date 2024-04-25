@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use("/", postsRouter);
 app.use("/posts", postsRouter);
 // 404 中間件
 app.use((req, res, next) => {

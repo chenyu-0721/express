@@ -5,6 +5,7 @@ const logger = require("morgan");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
+const induxRouter = require("./routes/index");
 const postsRouter = require("./routes/posts");
 
 const app = express();
@@ -33,7 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", postsRouter);
+app.use("/", induxRouter);
 app.use("/posts", postsRouter);
 // 404 中間件
 app.use((req, res, next) => {

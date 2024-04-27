@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "14203612-c168-4934-8fa2-0c1867eb27c9",
+		"name": "week3-express",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33911885"
+	},
+	"item": [
+		{
+			"name": "新增單筆資料",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test測試121212\",\r\n    \"content\":\"測試內文12121\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-7kso.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"express-7kso",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得所有資料",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://express-7kso.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"express-7kso",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "編輯單筆資料",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"test更改\",\r\n    \"content\":\"test更改\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-7kso.onrender.com/posts/662269dc55bb5b80bd3c431b",
+					"protocol": "https",
+					"host": [
+						"express-7kso",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"662269dc55bb5b80bd3c431b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆資料",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-7kso.onrender.com/posts/662269dc55bb5b80bd3c431b",
+					"protocol": "https",
+					"host": [
+						"express-7kso",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"662269dc55bb5b80bd3c431b"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除全部資料",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://express-7kso.onrender.com/posts",
+					"protocol": "https",
+					"host": [
+						"express-7kso",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

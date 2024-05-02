@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
-    content: {
-      type: String,
-      required: [true, "Content 未填寫"],
-    },
     image: {
       type: String,
       default: "",
@@ -15,14 +11,29 @@ const postSchema = new mongoose.Schema(
       default: Date.now(),
       select: false,
     },
-    name: {
-      type: String,
-      required: [true, "貼文姓名未填寫"],
-    },
     likes: {
       type: Number,
       default: 0,
     },
+    user: {
+      type: mongoose.Schema.ObjectId,
+      ref: "users",
+      require: [true, "使用者 ID 未填寫"],
+    },
+    content: {
+      type: String,
+      required: [true, "Content 未填寫"],
+    },
+    type: {
+      type: String,
+      enum: ["group", "person"],
+    },
+    tags: [
+      {
+        type: String,
+        required: [true, "貼文標籤 tags 未填寫"],
+      },
+    ],
   },
   { versionKey: false }
 );

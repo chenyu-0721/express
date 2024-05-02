@@ -3,23 +3,38 @@ const router = express.Router();
 const Post = require("../models/post.js");
 const handleSuccess = require("../handleSuccess.js");
 const handleError = require("../handleError.js");
+const User = require("../models/users");
 
-router.get("/", async (req, res, next) => {
-  try {
-    const post = await Post.find();
-    handleSuccess(res, post);
-  } catch (err) {
-    const error = "取得失敗";
-    handleError(res, error);
-  }
-});
+// routes/posts.js
+
+router.get('/', async(req, res) => {
+    const post = await Post.find().populate('user');
+    res.status(200).json({
+        status: 'success',
+        data: {
+            post
+        }
+    });
+})
 
 router.post("/", async (req, res, next) => {
   try {
-    const post = await Post.create(req.body);
-    handleSuccess(res, post);
+    const data = req.body;
+    if (data.content !== undefined) {
+      const post = await Post.create({
+        user: data.user,
+        content: data.content,
+        tags: data.tags,
+        type: data.type,
+      });
+
+      handleSuccess(res, post);
+    } else {
+      const error = "欄位未填寫正確，或無此 todo ID";
+      handleError(res, error);
+    }
   } catch (err) {
-    const error = "建立失敗";
+    const error = "欄位未填寫正確，或無此 todo ID";
     handleError(res, error);
   }
 });

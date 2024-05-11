@@ -21,6 +21,49 @@ app.use((req, res, next) => {
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 
+const resErrorProd = (err, res) => {
+  if (err.isOperational) {
+    res.status(err.statusCode).json({
+      message: err.message,
+    });
+  } else {
+    console.error("出現重大錯誤", err);
+    // 送出罐頭預設訊息
+    res.status(500).json({
+      status: "error",
+      message: "系統錯誤，請恰系統管理員",
+    });
+  }
+};
+
+const resErrorDev = (err, res) => {
+  res.status(err.statusCode).json({
+    message: err.message,
+    error: err,
+    stack: err.stack,
+  });
+};
+
+app.use(function (err, req, res, next) {
+  err.statusCode = err.statusCode || 500;
+  // 開發環境
+  if (process.env.NODE_ENV === "dev") {
+    return resErrorDev(err, res);
+  }
+  // 正式環境
+  if (err.isAxiosError == true) {
+    err.message = "axios 連線錯誤";
+    err.isOperational = true;
+    return resErrorProd(err, res);
+  } else if (err.name === "ValidationError") {
+    // mongoose 資料辨識錯誤
+    err.message = "資料欄位未填寫正確，請重新輸入！";
+    err.isOperational = true;
+    return resErrorProd(err, res);
+  }
+  resErrorProd(err, res);
+});
+
 dotenv.config({ path: "./config.env" });
 const DB = process.env.DATABASE.replace(
   "<password>",

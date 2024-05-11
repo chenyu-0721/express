@@ -3,41 +3,32 @@ const router = express.Router();
 const Post = require("../models/post.js");
 const handleSuccess = require("../handleSuccess.js");
 const handleError = require("../handleError.js");
-const User = require("../models/users");
-
+const appError = require("../statusHandle/appError"); // 匯入自訂錯誤
+const handleErrorAsync = require("../statusHandle/handleErrorAsync");
 // routes/posts.js
 
-router.get('/', async(req, res) => {
-    const post = await Post.find().populate('user');
-    res.status(200).json({
-        status: 'success',
-        data: {
-            post
-        }
-    });
-})
+router.get("/", async (req, res) => {
+  const post = await Post.find().populate("user");
+  res.status(200).json({
+    status: "success",
+    data: {
+      post,
+    },
+  });
+});
 
 router.post("/", async (req, res, next) => {
-  try {
-    const data = req.body;
-    if (data.content !== undefined) {
-      const post = await Post.create({
-        user: data.user,
-        content: data.content,
-        tags: data.tags,
-        type: data.type,
-      });
-
-      handleSuccess(res, post);
-    } else {
-      const error = "欄位未填寫正確，或無此 todo ID";
-      handleError(res, error);
-    }
-  } catch (err) {
-    const error = "欄位未填寫正確，或無此 todo ID";
-    handleError(res, error);
+  if (req.body.content == undefined) {
+    next(appError(400, "你沒有填寫 content 資料"));
   }
+  const newPost = await Post.create(req.body);
+  res.status(200).json({
+    status: "success",
+    post: newPost,
+  });
 });
+
+
 
 router.patch("/:id", async (req, res, next) => {
   try {

@@ -5,6 +5,12 @@ const handleSuccess = require("../handleSuccess.js");
 const appError = require("../statusHandle/appError");
 const handleErrorAsync = require("../statusHandle/handleErrorAsync");
 
+// * jwt  start
+
+const jwt = require("jsonwebtoken");
+
+// * jwt  end
+
 router.get("/", async (req, res) => {
   const post = await Post.find().populate("user");
   res.status(200).json({

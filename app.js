@@ -9,7 +9,6 @@ var postsRouter = require("./routes/posts");
 const port = process.env.PORT || 4000;
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const usersRouter = require("./routes/users");
 const uploadRouter = require("./routes/upload");
 var app = express();
 
@@ -49,7 +48,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
-app.use("/users", usersRouter);
 app.use("/upload", uploadRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

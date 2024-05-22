@@ -1,14 +1,14 @@
 // routes/upload.js
 const express = require("express");
 const router = express.Router();
-const appError = require("../service/appError");
-const handleErrorAsync = require("../service/handleErrorAsync");
+const appError = require("../statusHandle/appError");
+const handleErrorAsync = require("../statusHandle/handleErrorAsync");
 const sizeOf = require("image-size");
-const upload = require("../service/image");
+const upload = require("../routes/upload.js");
 
 const { v4: uuidv4 } = require("uuid");
 const firebaseAdmin = require("../service/firebase");
-const bucket = firebaseAdmin.storage().bucket(); // 取出存儲桶內容
+const bucket = firebaseAdmin.storage().bucket(); 
 
 const { isAuth, generateSendJWT } = require("../service/auth");
 

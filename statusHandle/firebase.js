@@ -1,6 +1,6 @@
 // statusHandle/firebase.js
 const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
+dotenv.config({ path: "../config.env" });
 const admin = require("firebase-admin");
 const config = {
   type: process.env.FIREBASE_TYPE,

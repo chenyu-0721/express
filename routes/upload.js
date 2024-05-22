@@ -6,8 +6,8 @@ const handleErrorAsync = require("../statusHandle/handleErrorAsync");
 const upload = require("../routes/upload.js");
 
 const { v4: uuidv4 } = require("uuid");
-const firebaseAdmin = require("../service/firebase");
-const bucket = firebaseAdmin.storage().bucket(); 
+const firebaseAdmin = require("../statusHandle/firebase");
+const bucket = firebaseAdmin.storage().bucket();
 
 const { isAuth, generateSendJWT } = require("../service/auth");
 

@@ -3,7 +3,6 @@ const express = require("express");
 const router = express.Router();
 const appError = require("../statusHandle/appError");
 const handleErrorAsync = require("../statusHandle/handleErrorAsync");
-const sizeOf = require("image-size");
 const upload = require("../routes/upload.js");
 
 const { v4: uuidv4 } = require("uuid");

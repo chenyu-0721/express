@@ -134,6 +134,81 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "更新個人資料",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODc0MCwiZXhwIjoxNzE3MDcwNzQwfQ.E6oIgzGWvG27STzd0HWKTS0ALKoVCYkErCrCm3cIrmg"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"testyu\",\r\n  \"sex\": \"male\",\r\n  \"photo\": \"hihihi.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:4000/users/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "wee7 firebase 上傳照片",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODk5NSwiZXhwIjoxNzE3MDcwOTk1fQ.1wB1ECmPAmYuhKh4sM6m7zWhMws2l24N9YiZwnwWrQw"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/K12J0/OneDrive/桌面/六角專題/image/狗狗/網球.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:4000/upload/file",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"upload",
+						"file"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "47c25965-18ed-4070-b5c6-a0f199665788",
+		"name": "week6~7",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33911885"
+	},
+	"item": [
+		{
+			"name": "註冊帳號密碼",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"aa@example.com\",\r\n  \"password\": \"a12345678\",\r\n  \"confirmPassword\": \"a12345678\",\r\n  \"name\": \"yu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:4000/users/sign_up",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登入帳號密碼",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"aa@example.com\",\r\n    \"password\": \"a12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:4000/users/sign_in",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "重設帳號密碼",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODM1MSwiZXhwIjoxNzE3MDcwMzUxfQ.JuDBppYYY5MPfi3iH93hJeFgiPjNIxRD_R3yqW_t8yQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\": \"b12345678\",\r\n  \"confirmPassword\": \"b12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:4000/users/updatePassword",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得個人資料",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODYxNiwiZXhwIjoxNzE3MDcwNjE2fQ.xbGCE-BUtUZ18Ks44IjFi61GxgP55ylGu05zQwmOem8"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:4000/users/profile",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "4000",
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

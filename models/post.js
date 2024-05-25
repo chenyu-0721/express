@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.ObjectId,
-      ref: "users",
+      ref: "user",
       require: [true, "使用者 ID 未填寫"],
     },
     content: {

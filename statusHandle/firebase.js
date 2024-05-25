@@ -1,8 +1,6 @@
-require("dotenv").config({ path: "../.env" }); // 確保路徑正確，根據你的文件結構
+const dotenv = require("dotenv");
 const admin = require("firebase-admin");
-
-// 打印所有環境變數來檢查
-console.log("FIREBASE_PRIVATE_KEY:", process.env.FIREBASE_PRIVATE_KEY);
+dotenv.config({ path: "../config.env" });
 
 const config = {
   type: process.env.FIREBASE_TYPE,
@@ -13,7 +11,7 @@ const config = {
   client_id: process.env.FIREBASE_CLIENT_ID,
   auth_uri: process.env.FIREBASE_AUTH_URI,
   token_uri: process.env.FIREBASE_TOKEN_URI,
-  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+  auth_provider_X509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
   client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL,
 };
 

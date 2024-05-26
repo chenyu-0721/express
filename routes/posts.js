@@ -138,14 +138,14 @@ router.post(
 );
 
 // 取得個人所有貼文列表
-// router.get(
-//   "/user/:userID",
-//   handleErrorAsync(async (req, res, next) => {
-//     const userID = req.params.userID;
-//     const posts = await Post.find({ user: userID });
-//     handleSuccess(res, { posts: posts });
-//   })
-// );
+router.get(
+  "/user/:userID",
+  handleErrorAsync(async (req, res, next) => {
+    const userID = req.params.userID;
+    const posts = await Post.find({ user: userID });
+    handleSuccess(res, { posts: posts });
+  })
+);
 
 
 

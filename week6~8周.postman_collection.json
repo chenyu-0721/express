@@ -496,6 +496,30 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "[GET]取得個人所有貼文列表",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts/user/662f6fd5cd4163cd685f1ca0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"user",
+								"662f6fd5cd4163cd685f1ca0"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

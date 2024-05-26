@@ -146,4 +146,102 @@ router.patch(
   })
 );
 
+// followers 欄位對應的是自己被其他使用者追蹤
+// following 欄位則是對應自己追蹤的使用者
+router.post(
+  "/:id/follow",
+  isAuth,
+  handleErrorAsync(async (req, res, next) => {
+    if (req.params.id === req.user.id) {
+      return next(appError(401, "您無法追蹤自己", next));
+    }
+    // 更新自己追蹤的部分
+    await User.updateOne(
+      {
+        _id: req.user.id,
+        "following.user": { $ne: req.params.id },
+      },
+      {
+        $addToSet: { following: { user: req.params.id } },
+      }
+    );
+    // 更新被追蹤者的部分
+    await User.updateOne(
+      {
+        _id: req.params.id,
+        "followers.user": { $ne: req.user.id },
+      },
+      {
+        $addToSet: { followers: { user: req.user.id } },
+      }
+    );
+    res.status(200).json({
+      status: "success",
+      message: "您已成功追蹤！",
+    });
+  })
+);
+
+// 取消追蹤
+router.delete(
+  "/:id/unfollow",
+  isAuth,
+  handleErrorAsync(async (req, res, next) => {
+    if (req.params.id === req.user.id) {
+      return next(appError(401, "您無法取消追蹤自己", next));
+    }
+
+    await User.findByIdAndUpdate(
+      req.user.id,
+      { $pull: { following: { user: req.params.id } } },
+      { new: true }
+    );
+
+    await User.findByIdAndUpdate(
+      req.params.id,
+      { $pull: { followers: { user: req.user.id } } },
+      { new: true }
+    );
+    res.status(200).json({
+      status: "success",
+      message: "您已成功取消追蹤！",
+    });
+  })
+);
+
+// 取得個人按讚列表
+router.get(
+  "/getLikeList",
+  isAuth,
+  handleErrorAsync(async (req, res, next) => {
+    const userId = req.user.id;
+    const user = await User.findById(userId).populate("likedPosts", "content"); // 假設 likedPosts 是用戶按讚過的貼文的參考
+    if (!user) {
+      return next(appError(404, "使用者未找到"));
+    }
+    res.status(200).json({
+      status: "success",
+      data: {
+        likedPosts: user.likedPosts,
+      },
+    });
+  })
+);
+
+// 取得個人追蹤名單 功能
+
+router.get(
+  "/following",
+  isAuth,
+  handleErrorAsync(async (req, res, next) => {
+    const followList = await User.find({
+      _id: req.user.id,
+    }).select("following");
+
+    res.status(200).json({
+      status: "success",
+      followList,
+    });
+  })
+);
 module.exports = router;

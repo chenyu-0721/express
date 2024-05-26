@@ -1,0 +1,546 @@
+{
+	"info": {
+		"_postman_id": "47c25965-18ed-4070-b5c6-a0f199665788",
+		"name": "week6~8周",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33911885"
+	},
+	"item": [
+		{
+			"name": "會員功能",
+			"item": [
+				{
+					"name": "註冊帳號密碼",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"bb@example.com\",\r\n  \"password\": \"a12345678\",\r\n  \"confirmPassword\": \"a12345678\",\r\n  \"name\": \"yu\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/sign_up",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"sign_up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登入帳號密碼",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bb@example.com\",\r\n    \"password\": \"a12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/sign_in",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "重設帳號密碼",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODM1MSwiZXhwIjoxNzE3MDcwMzUxfQ.JuDBppYYY5MPfi3iH93hJeFgiPjNIxRD_R3yqW_t8yQ"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"b12345678\",\r\n  \"confirmPassword\": \"b12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/updatePassword",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得個人資料",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODYxNiwiZXhwIjoxNzE3MDcwNjE2fQ.xbGCE-BUtUZ18Ks44IjFi61GxgP55ylGu05zQwmOem8"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/profile?Authorization=bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTMwNzBiNjVjYWQxM2U2ZWUxZjhmNCIsImlhdCI6MTcxNjcxODA2NSwiZXhwIjoxNzE3MTUwMDY1fQ.cZX48NH38CBfcemez23h7YBo7YmRS55E9OWDjv5Gsic",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"profile"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTMwNzBiNjVjYWQxM2U2ZWUxZjhmNCIsImlhdCI6MTcxNjcxODA2NSwiZXhwIjoxNzE3MTUwMDY1fQ.cZX48NH38CBfcemez23h7YBo7YmRS55E9OWDjv5Gsic"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新個人資料",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODc0MCwiZXhwIjoxNzE3MDcwNzQwfQ.E6oIgzGWvG27STzd0HWKTS0ALKoVCYkErCrCm3cIrmg"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"testyu\",\r\n  \"sex\": \"male\",\r\n  \"photo\": \"hihihi.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/profile",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "會員按讚追蹤動態",
+			"item": [
+				{
+					"name": "[POST]追蹤朋友",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTMwNzBiNjVjYWQxM2U2ZWUxZjhmNCIsImlhdCI6MTcxNjcxODA2NSwiZXhwIjoxNzE3MTUwMDY1fQ.cZX48NH38CBfcemez23h7YBo7YmRS55E9OWDjv5Gsic"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/66331c1e4d3caa553cd052e8/follow",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"66331c1e4d3caa553cd052e8",
+								"follow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[DELETE]取消追蹤朋友",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTMwNzBiNjVjYWQxM2U2ZWUxZjhmNCIsImlhdCI6MTcxNjcxODA2NSwiZXhwIjoxNzE3MTUwMDY1fQ.cZX48NH38CBfcemez23h7YBo7YmRS55E9OWDjv5Gsic"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/66331c1e4d3caa553cd052e8/unfollow?Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjcxNjQwNSwiZXhwIjoxNzE3MTQ4NDA1fQ.9kaj2PlSbh3qEpTACyuiKtJQtlG72sQWSM3dXamGW24",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"66331c1e4d3caa553cd052e8",
+								"unfollow"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjcxNjQwNSwiZXhwIjoxNzE3MTQ4NDA1fQ.9kaj2PlSbh3qEpTACyuiKtJQtlG72sQWSM3dXamGW24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET]取得個人按讚列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTMwNzBiNjVjYWQxM2U2ZWUxZjhmNCIsImlhdCI6MTcxNjcxODA2NSwiZXhwIjoxNzE3MTUwMDY1fQ.cZX48NH38CBfcemez23h7YBo7YmRS55E9OWDjv5Gsic"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/getLikeList",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"getLikeList"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET]取得個人追蹤名單",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTMwNzBiNjVjYWQxM2U2ZWUxZjhmNCIsImlhdCI6MTcxNjcxODA2NSwiZXhwIjoxNzE3MTUwMDY1fQ.cZX48NH38CBfcemez23h7YBo7YmRS55E9OWDjv5Gsic"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:4000/users/following",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"users",
+								"following"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "動態貼文",
+			"item": [
+				{
+					"name": "[GET]取得所有貼文：{url}/posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[GET]取得單一貼文：{url}/posts/{postID}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts/665300877838fee14d8cd07d",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"665300877838fee14d8cd07d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST]新增貼文：{url}/posts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tags\": [\"謎因\",\"外向\"],\r\n    \"content\": \"測試是否能新增123\",\r\n    \"image\": \"\",\r\n    \"likes\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST]新增一則貼文的讚",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts/66331c1e4d3caa553cd052e8/like",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"66331c1e4d3caa553cd052e8",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE]取消一則貼文的讚",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts/662f6fd5cd4163cd685f1ca0/unlike",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"662f6fd5cd4163cd685f1ca0",
+								"unlike"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[POST]新增一則貼文的留言",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n     \"user\": \"66331c1e4d3caa553cd052e8\",\r\n    \"content\":\"測試有沒有成功\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/posts/662f6fd5cd4163cd685f1ca0/comment",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"posts",
+								"662f6fd5cd4163cd685f1ca0",
+								"comment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "其他",
+			"item": [
+				{
+					"name": "wee7 firebase 上傳照片",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NTFkMWM0ZDQ4NTEwYzUzZjBlZTdlOCIsImlhdCI6MTcxNjYzODk5NSwiZXhwIjoxNzE3MDcwOTk1fQ.1wB1ECmPAmYuhKh4sM6m7zWhMws2l24N9YiZwnwWrQw"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/K12J0/OneDrive/桌面/六角專題/image/狗狗/網球.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:4000/upload/file",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "4000",
+							"path": [
+								"upload",
+								"file"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

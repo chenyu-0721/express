@@ -5,11 +5,7 @@ const handleSuccess = require("../handleSuccess.js");
 const appError = require("../statusHandle/appError");
 const handleErrorAsync = require("../statusHandle/handleErrorAsync");
 
-// * jwt  start
-
-const jwt = require("jsonwebtoken");
-
-// * jwt  end
+// 取得所有貼文
 
 router.get("/", async (req, res) => {
   const post = await Post.find().populate("user");
@@ -21,7 +17,7 @@ router.get("/", async (req, res) => {
   });
 });
 
-
+// 新增貼文
 router.post(
   "/",
   handleErrorAsync(async (req, res, next) => {
@@ -36,6 +32,7 @@ router.post(
   })
 );
 
+// 修改貼文
 router.patch(
   "/:id",
   handleErrorAsync(async (req, res) => {
@@ -46,6 +43,7 @@ router.patch(
   })
 );
 
+// 刪除貼文
 router.delete(
   "/:id",
   handleErrorAsync(async (req, res) => {
@@ -54,6 +52,7 @@ router.delete(
   })
 );
 
+// 刪除所有貼文
 router.delete(
   "/",
   handleErrorAsync(async (req, res) => {
@@ -62,49 +61,92 @@ router.delete(
   })
 );
 
-module.exports = router;
+// 取得單一貼文
 
-// router.post(
-//   "/",
+router.get(
+  "/:id",
+  handleErrorAsync(async (req, res, next) => {
+    const post = await Post.findById(req.params.id).populate("user");
+    if (!post) {
+      return next(appError(404, "Post not found"));
+    }
+    handleSuccess(res, post);
+  })
+);
+
+// 尋找對應id的Like
+router.post(
+  "/:id/like",
+  handleErrorAsync(async (req, res, next) => {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return next(appError(404, "Post not found"));
+    }
+    post.likes += 1;
+    await post.save();
+    handleSuccess(res, post);
+  })
+);
+
+// 新增貼文的讚 點一次 +1
+router.post(
+  "/:id/like",
+  handleErrorAsync(async (req, res, next) => {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return next(appError(404, "Post not found"));
+    }
+    post.likes += 1;
+    await post.save();
+    handleSuccess(res, { likes: post.likes });
+  })
+);
+
+// 取消貼文的讚 點一次 -1
+router.delete(
+  "/:id/unlike",
+  handleErrorAsync(async (req, res, next) => {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return next(appError(404, "Post not found"));
+    }
+    post.likes -= 1;
+    await post.save();
+    handleSuccess(res, { likes: post.likes });
+  })
+);
+
+// 新增留言
+router.post(
+  "/:id/comment",
+  handleErrorAsync(async (req, res, next) => {
+    const post = await Post.findById(req.params.id);
+    if (!post) {
+      return next(appError(404, "Post not found"));
+    }
+
+    const newComment = {
+      user: req.body.user,
+      content: req.body.content,
+    };
+    post.comments.push(newComment);
+
+    await post.save();
+
+    handleSuccess(res, { comment: newComment });
+  })
+);
+
+// 取得個人所有貼文列表
+// router.get(
+//   "/user/:userID",
 //   handleErrorAsync(async (req, res, next) => {
-//     if (req.body.content == undefined) {
-//       next(appError(400, "你沒有填寫 content 資料"));
-//     }
-//     const newPost = await Post.create(req.body);
-//     res.status(200).json({
-//       status: "success",
-//       post: newPost,
-//     });
+//     const userID = req.params.userID;
+//     const posts = await Post.find({ user: userID });
+//     handleSuccess(res, { posts: posts });
 //   })
 // );
 
-// router.patch("/:id", async (req, res, next) => {
-//   try {
-//     const newpost = await Post.findByIdAndUpdate(req.params.id, req.body, {
-//       new: true,
-//     });
-//     handleSuccess(res, newpost);
-//   } catch (err) {
-//     const error = "編輯失敗";
-//     handleError(res, error);
-//   }
-// });
 
-// router.delete("/:id", async (req, res, next) => {
-//   try {
-//     const delpost = await Post.findByIdAndDelete(req.params.id);
-//     handleSuccess(res, delpost);
-//   } catch (err) {
-//     const error = "刪除單筆失敗";
-//     handleError(res, error);
-//   }
-// });
 
-// router.delete("/", async function (req, res, next) {
-//   try {
-//     await Post.deleteMany({});
-//     handleSuccess(res, null);
-//   } catch (err) {
-//     handleError(res, err, "刪除所有貼文資料失敗");
-//   }
-// });
+module.exports = router;

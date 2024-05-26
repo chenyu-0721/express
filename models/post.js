@@ -18,7 +18,6 @@ const postSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.ObjectId,
       ref: "user",
-      require: [true, "使用者 ID 未填寫"],
     },
     content: {
       type: String,
@@ -32,6 +31,23 @@ const postSchema = new mongoose.Schema(
       {
         type: String,
         required: [true, "貼文標籤 tags 未填寫"],
+      },
+    ],
+    comments: [
+      {
+        user: {
+          type: mongoose.Schema.ObjectId,
+          ref: "user",
+          required: true,
+        },
+        content: {
+          type: String,
+          required: true,
+        },
+        createdAt: {
+          type: Date,
+          default: Date.now(),
+        },
       },
     ],
   },
